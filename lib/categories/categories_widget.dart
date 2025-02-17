@@ -117,46 +117,63 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                                 staggeredViewIndex];
                         return Padding(
                           padding: EdgeInsets.all(10.0),
-                          child: Container(
-                            width: 100.0,
-                            height: 250.31,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.network(
-                                      valueOrDefault<String>(
-                                        staggeredViewCategoriesRecord.image,
-                                        'https://firebasestorage.googleapis.com/v0/b/semana5-lunes-qbla2k.firebasestorage.app/o/istockphoto-1396814518-612x612.jpg?alt=media&token=409513ad-5931-4645-8ddd-0a82afb9f554',
-                                      ),
-                                      width: 200.0,
-                                      height: 185.72,
-                                      fit: BoxFit.cover,
-                                    ),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed(
+                                'Products',
+                                queryParameters: {
+                                  'catProduct': serializeParam(
+                                    staggeredViewCategoriesRecord.reference,
+                                    ParamType.DocumentReference,
                                   ),
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      staggeredViewCategoriesRecord.name,
-                                      'No Category name',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          letterSpacing: 0.0,
+                                }.withoutNulls,
+                              );
+                            },
+                            child: Container(
+                              width: 100.0,
+                              height: 250.31,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.network(
+                                        valueOrDefault<String>(
+                                          staggeredViewCategoriesRecord.image,
+                                          'https://firebasestorage.googleapis.com/v0/b/semana5-lunes-qbla2k.firebasestorage.app/o/istockphoto-1396814518-612x612.jpg?alt=media&token=409513ad-5931-4645-8ddd-0a82afb9f554',
                                         ),
+                                        width: 200.0,
+                                        height: 185.72,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Flexible(
+                                    child: Text(
+                                      valueOrDefault<String>(
+                                        staggeredViewCategoriesRecord.name,
+                                        'No Category name',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         );

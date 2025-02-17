@@ -96,7 +96,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Products',
           path: '/products',
-          builder: (context, params) => ProductsWidget(),
+          builder: (context, params) => ProductsWidget(
+            catProduct: params.getParam(
+              'catProduct',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['categories'],
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
